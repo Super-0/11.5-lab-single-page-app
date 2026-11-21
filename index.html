@@ -1,1 +1,47 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Higher or Lower</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main>
+        <h1>Pokémon Higher or Lower</h1>
+        <p>Guess which Pokémon has the higher or lower stat!</p>
+
+        <h2>Streak: <span id="score">0</span></h2>
+        <h2 id="stat-name">Speed</h2>
+
+        <section class="pokemon-container">
+            <div class="pokemon-card">
+                <h3 id="name1">Pokémon 1</h3>
+                <img id="image1" src="" alt="First Pokémon">
+                <p id="stat1">?</p>
+            </div>
+
+            <div class="pokemon-card">
+                <h3 id="name2">Pokémon 2</h3>
+                <img id="image2" src="" alt="Second Pokémon">
+                <p id="stat2">???</p>
+            </div>
+        </section>
+
+        <p>Does the second Pokémon have a higher or lower stat?</p>
+
+        <div class="buttons">
+            <button id="higher">Higher</button>
+            <button id="lower">Lower</button>
+        </div>
+
+        <p id="result"></p>
+
+        <button id="next" hidden>Next Round</button>
+
+        <p class="note">Equal stats count as correct!</p>
+    </main>
+</body>
+</html>
