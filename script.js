@@ -72,7 +72,7 @@ async function newRound() {
         pokemon1 = await getPokemon(id1);
         pokemon2 = await getPokemon(id2);
 
- 
+
         document.getElementById("name1").textContent = pokemon1.name;
         document.getElementById("name2").textContent = pokemon2.name;
 
@@ -138,15 +138,15 @@ function checkGuess(guess) {
 }
 
 
-higherButton.addEventListener("click", function() {
+higherButton.addEventListener("click", function () {
     checkGuess("higher");
 });
 
-lowerButton.addEventListener("click", function() {
+lowerButton.addEventListener("click", function () {
     checkGuess("lower");
 });
 
-nextButton.addEventListener("click", function() {
+nextButton.addEventListener("click", function () {
     if (gameOver) {
         score = 0;
         gameOver = false;
