@@ -14,17 +14,14 @@ const stats = [
     "special-defense",
     "speed"
 ];
-
 const higherButton = document.getElementById("higher");
 const lowerButton = document.getElementById("lower");
 const nextButton = document.getElementById("next");
 
-// Get a random Pokémon ID (generations 1-5)
 function randomPokemon() {
     return Math.floor(Math.random() * 649) + 1;
 }
 
-// Get Pokémon data from the API
 async function getPokemon(id) {
     const response = await fetch(
         "https://pokeapi.co/api/v2/pokemon/" + id
@@ -37,7 +34,6 @@ async function getPokemon(id) {
     return await response.json();
 }
 
-// Find a Pokémon's selected stat
 function getStat(pokemon) {
     for (let i = 0; i < pokemon.stats.length; i++) {
         if (pokemon.stats[i].stat.name === currentStat) {
@@ -46,7 +42,6 @@ function getStat(pokemon) {
     }
 }
 
-// Start a new round
 async function newRound() {
     higherButton.disabled = true;
     lowerButton.disabled = true;
@@ -54,7 +49,6 @@ async function newRound() {
 
     document.getElementById("result").textContent = "Loading...";
 
-    // Pick a different stat from the previous round
     let statIndex = Math.floor(Math.random() * stats.length);
 
     while (stats[statIndex] === previousStat) {
@@ -67,7 +61,6 @@ async function newRound() {
     document.getElementById("stat-name").textContent =
         currentStat.toUpperCase().replace("-", " ");
 
-    // Pick two different Pokémon
     let id1 = randomPokemon();
     let id2 = randomPokemon();
 
@@ -79,18 +72,17 @@ async function newRound() {
         pokemon1 = await getPokemon(id1);
         pokemon2 = await getPokemon(id2);
 
-        // Display names
+ 
         document.getElementById("name1").textContent = pokemon1.name;
         document.getElementById("name2").textContent = pokemon2.name;
 
-        // Display sprites
+
         document.getElementById("image1").src =
             pokemon1.sprites.front_default;
 
         document.getElementById("image2").src =
             pokemon2.sprites.front_default;
 
-        // Show first stat, hide second
         document.getElementById("stat1").textContent =
             getStat(pokemon1);
 
@@ -110,7 +102,6 @@ async function newRound() {
     }
 }
 
-// Check the player's guess
 function checkGuess(guess) {
     let firstStat = getStat(pokemon1);
     let secondStat = getStat(pokemon2);
@@ -125,7 +116,6 @@ function checkGuess(guess) {
         correct = true;
     }
 
-    // Reveal the second Pokémon's stat
     document.getElementById("stat2").textContent = secondStat;
 
     if (correct) {
@@ -147,7 +137,7 @@ function checkGuess(guess) {
     nextButton.hidden = false;
 }
 
-// Button events
+
 higherButton.addEventListener("click", function() {
     checkGuess("higher");
 });
@@ -166,5 +156,5 @@ nextButton.addEventListener("click", function() {
     newRound();
 });
 
-// Start the first round
+
 newRound();
